@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>機場的下一個十年競爭力，藏在看不見的地方｜Executive Insight Paper</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;600;700&family=EB+Garamond:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --white:#ffffff; --paper:#fafaf8;
+    --titanium-50:#f4f4f3; --titanium-100:#e7e7e5; --titanium-300:#c7c7c4; --titanium-500:#9a9a96; --titanium-700:#6b6b68;
+    --ink:#17171a; --ink-soft:#3a3a3d; --black:#0a0a0b; --black-2:#131315;
+    --gold:#b6935c; --gold-soft:#d8c19a; --gold-tint:#f4ede1;
+    --serif:'Noto Serif TC','Georgia',serif;
+    --serif-en:'EB Garamond','Noto Serif TC',serif;
+    --sans:'Noto Sans TC','PingFang TC','Microsoft JhengHei',-apple-system,BlinkMacSystemFont,sans-serif;
+    --maxw:740px; --wide:1040px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:var(--sans);color:var(--ink);background:var(--paper);line-height:1.95;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  ::selection{background:var(--gold-tint);color:var(--black);}
+
+  #progress{position:fixed;top:0;left:0;height:2px;width:0%;background:linear-gradient(90deg,var(--gold-soft),var(--gold));z-index:999;transition:width .15s linear;}
+  header.topbar{position:fixed;top:0;left:0;right:0;z-index:900;display:flex;justify-content:space-between;align-items:center;padding:22px 6vw;pointer-events:none;}
+  header.topbar .lhs{font-size:13px;letter-spacing:.16em;color:var(--titanium-500);text-transform:uppercase;font-weight:500;}
+  header.topbar .rhs{font-size:13px;letter-spacing:.16em;color:var(--titanium-700);text-transform:uppercase;font-weight:600;background:rgba(250,250,248,.75);backdrop-filter:blur(6px);padding:7px 13px;border-radius:4px;transition:color .3s ease;}
+  header.topbar.on-dark .lhs{color:var(--titanium-500);}
+  header.topbar.on-dark .rhs{color:var(--gold-soft);background:rgba(255,255,255,.08);}
+
+  /* ---- Chapter bookmark nav (read position, not site nav) ---- */
+  .chapter-nav{position:fixed;top:50%;right:40px;transform:translateY(-50%);z-index:800;width:215px;opacity:0;pointer-events:none;transition:opacity .5s ease;}
+  .chapter-nav.visible{opacity:1;}
+  .cn-block{display:none;}
+  .cn-block.active{display:block;}
+  .cn-chapter{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:5px;}
+  .cn-title{font-family:var(--serif);font-size:16.5px;color:var(--ink);margin-bottom:18px;transition:color .3s ease;}
+  .cn-rule{width:100%;height:1px;background:var(--titanium-100);margin-bottom:18px;transition:background .3s ease;}
+  .cn-list{list-style:none;display:flex;flex-direction:column;gap:15px;}
+  .cn-list li{display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--titanium-500);transition:color .3s ease;}
+  .cn-list li .dot{width:7px;height:7px;border-radius:50%;border:1.5px solid var(--titanium-300);flex-shrink:0;transition:all .3s ease;}
+  .cn-list li.active{color:var(--black);font-weight:600;}
+  .cn-list li.active .dot{background:var(--gold);border-color:var(--gold);}
+  .chapter-nav.on-dark .cn-title{color:#fff;}
+  .chapter-nav.on-dark .cn-rule{background:rgba(255,255,255,.15);}
+  .chapter-nav.on-dark .cn-list li{color:var(--titanium-500);}
+  .chapter-nav.on-dark .cn-list li.active{color:#fff;}
+  .chapter-nav.on-dark .cn-list li .dot{border-color:rgba(255,255,255,.3);}
+  @media (max-width:1180px){ .chapter-nav{display:none;} }
+
+  section{position:relative;padding:150px 6vw;display:flex;flex-direction:column;align-items:center;}
+  section.compact{padding:114px 6vw;}
+  section.tight{padding:84px 6vw;}
+  .wrap{width:100%;max-width:var(--maxw);}
+  .wrap-wide{width:100%;max-width:var(--wide);}
+
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity 1s cubic-bezier(.16,.8,.24,1),transform 1s cubic-bezier(.16,.8,.24,1);}
+  .reveal.visible{opacity:1;transform:translateY(0);}
+  .reveal-delay-1.visible{transition-delay:.1s;} .reveal-delay-2.visible{transition-delay:.2s;} .reveal-delay-3.visible{transition-delay:.3s;} .reveal-delay-4.visible{transition-delay:.4s;}
+
+  .eyebrow{font-size:13.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:20px;display:flex;align-items:center;gap:10px;justify-content:center;}
+  .eyebrow::before,.eyebrow::after{content:"";width:23px;height:1px;background:var(--gold);display:inline-block;}
+
+  h1,h2,h3{font-family:var(--serif);font-weight:600;color:var(--black);letter-spacing:.01em;}
+  h1{font-size:clamp(31px,4.6vw,52px);line-height:1.5;text-align:center;}
+  h2{font-size:clamp(25px,3.1vw,34px);line-height:1.6;margin-bottom:20px;text-align:center;}
+  h3{font-size:19.5px;line-height:1.6;margin-bottom:7px;}
+
+  p{font-size:18.5px;color:var(--ink-soft);margin-bottom:16px;font-weight:400;text-align:center;}
+  p:last-child{margin-bottom:0;}
+  strong{color:var(--black);font-weight:600;}
+  .short{max-width:560px;margin:0 auto;}
+
+  .keyline{font-family:var(--serif);font-size:21px;color:var(--gold);font-weight:500;font-style:italic;margin-top:25px;line-height:1.8;}
+
+  /* ---- Breathing page (one sentence, generous whitespace) ---- */
+  .breath{min-height:52vh;justify-content:center;align-items:center;text-align:center;}
+  .breath .en{font-family:var(--serif-en);font-style:italic;font-size:clamp(22px,2.8vw,31px);color:var(--ink);line-height:1.65;}
+  .breath .zh{font-family:var(--serif);font-size:clamp(17px,1.8vw,19.5px);color:var(--titanium-700);margin-top:22px;line-height:1.9;}
+
+  /* ---- Cover ---- */
+  #cover{min-height:100vh;padding-top:0;padding-bottom:0;justify-content:center;text-align:center;background:radial-gradient(ellipse 800px 500px at 50% -10%, var(--gold-tint) 0%, transparent 60%),var(--paper);}
+  #cover .tag{font-size:14px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:36px;}
+  #cover h1{font-size:clamp(35px,5.8vw,62px);max-width:960px;margin:0 auto 25px;}
+  #cover .sub{font-size:clamp(16.5px,1.9vw,19.5px);color:var(--titanium-700);font-weight:400;max-width:520px;margin:0 auto 55px;}
+  #cover .meta{font-size:14px;color:var(--titanium-500);letter-spacing:.08em;display:flex;gap:18px;justify-content:center;flex-wrap:wrap;}
+  #cover .meta span:not(:last-child)::after{content:"·";margin-left:18px;color:var(--titanium-300);}
+  .scrolldown{position:absolute;bottom:44px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:10px;color:var(--titanium-500);font-size:12px;letter-spacing:.15em;text-transform:uppercase;animation:float 2.6s ease-in-out infinite;}
+  @keyframes float{0%,100%{transform:translate(-50%,0);}50%{transform:translate(-50%,8px);}}
+  .scrolldown svg{width:15px;height:21px;}
+
+  /* ---- Table of Contents ---- */
+  #toc{padding:170px 6vw;}
+  #toc .toc-head{font-size:14px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);text-align:center;margin-bottom:78px;}
+  .toc-list{width:100%;max-width:760px;}
+  .toc-item{display:grid;grid-template-columns:64px 1fr;gap:30px;padding:34px 0;border-bottom:1px solid var(--titanium-100);text-align:left;}
+  .toc-item:first-child{border-top:1px solid var(--titanium-100);}
+  .toc-num{font-family:var(--serif-en);font-style:italic;font-size:30px;color:var(--gold-soft);}
+  .toc-en{font-family:var(--serif);font-size:14.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:7px;}
+  .toc-title{font-family:var(--serif);font-size:22px;color:var(--black);margin-bottom:9px;}
+  .toc-desc{font-size:16px;color:var(--titanium-700);text-align:left;}
+
+  /* ---- Chapter opener ---- */
+  .chapter-opener{min-height:100vh;background:var(--black);color:var(--white);justify-content:center;align-items:center;text-align:center;overflow:hidden;}
+  .chapter-opener .ghost{position:absolute;top:50%;left:50%;transform:translate(-50%,-54%);font-family:var(--serif-en);font-size:min(60vw,520px);color:rgba(216,193,154,.05);font-weight:500;pointer-events:none;line-height:1;user-select:none;}
+  .chapter-opener .co-eyebrow{font-size:14px;letter-spacing:.3em;text-transform:uppercase;color:var(--titanium-500);margin-bottom:29px;position:relative;}
+  .chapter-opener .co-en{font-family:var(--serif-en);font-style:italic;color:var(--gold-soft);font-size:clamp(39px,6.6vw,72px);position:relative;margin-bottom:22px;}
+  .chapter-opener .co-zh{font-family:var(--serif);color:var(--white);font-size:clamp(22px,2.8vw,30px);position:relative;margin-bottom:38px;}
+  .chapter-opener .co-thesis{font-family:var(--serif);color:var(--titanium-300);font-size:clamp(17.5px,1.9vw,21px);max-width:620px;margin:0 auto;position:relative;line-height:1.9;}
+  .chapter-opener .co-chip{position:relative;margin-top:48px;font-size:13px;letter-spacing:.2em;color:var(--titanium-500);border:1px solid rgba(255,255,255,.15);padding:8px 20px;border-radius:20px;}
+
+  /* ---- Climax ---- */
+  .climax{min-height:100vh;background:var(--black);color:var(--white);justify-content:center;align-items:center;text-align:center;}
+  .climax .en{font-family:var(--serif-en);font-style:italic;font-size:clamp(28px,4.6vw,47px);line-height:1.5;color:var(--gold-soft);}
+  .climax .zh{font-family:var(--serif);font-size:clamp(19.5px,2.5vw,26px);color:var(--titanium-300);margin-top:35px;line-height:1.9;}
+  .climax .rule{width:36px;height:1px;background:var(--gold);margin:35px auto;}
+
+  hr.rule{border:none;height:1px;background:var(--titanium-100);margin:40px 0;width:100%;}
+
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;margin-top:42px;text-align:center;}
+  .stat .num{font-family:var(--serif);font-size:clamp(26px,3.1vw,35px);color:var(--gold);font-weight:600;}
+  .stat .label{font-size:13.5px;color:var(--titanium-500);margin-top:7px;letter-spacing:.02em;}
+
+  .insight{margin-top:38px;padding:27px 32px;border-left:2px solid var(--gold);background:linear-gradient(90deg,var(--gold-tint),transparent 70%);border-radius:0 10px 10px 0;text-align:left;}
+  .insight .tag{font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:9px;}
+  .insight p{color:var(--black);font-size:17.5px;font-weight:500;line-height:1.8;text-align:left;margin:0;}
+
+  .timeline{margin-top:45px;position:relative;text-align:left;}
+  .timeline::before{content:"";position:absolute;left:12px;top:6px;bottom:6px;width:1px;background:var(--titanium-300);}
+  .t-item{position:relative;padding-left:42px;margin-bottom:30px;}
+  .t-item:last-child{margin-bottom:0;}
+  .t-item::before{content:"";position:absolute;left:4px;top:4px;width:16px;height:16px;border-radius:50%;background:var(--white);border:2px solid var(--gold);}
+  .t-year{font-family:var(--serif);font-size:14.5px;color:var(--gold);font-weight:700;margin-bottom:4px;}
+  .t-title{font-size:16.5px;font-weight:600;color:var(--black);margin-bottom:4px;}
+  .t-desc{font-size:15px;color:var(--titanium-700);line-height:1.7;}
+
+  .layers{margin-top:40px;display:flex;flex-direction:column;gap:12px;}
+  .layer{display:flex;align-items:center;gap:18px;padding:21px 26px;border-radius:12px;border:1px solid var(--titanium-100);background:var(--white);text-align:left;}
+  .layer .lnum{font-family:var(--serif);font-size:13px;color:var(--white);background:var(--ink);width:29px;height:29px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .layer.l3 .lnum{background:var(--gold);}
+  .layer .ltext h3{font-size:16px;margin-bottom:2px;}
+  .layer .ltext p{font-size:14.5px;margin:0;color:var(--titanium-700);text-align:left;}
+  .layer.l2{margin-left:23px;} .layer.l3{margin-left:46px;border-color:var(--gold-soft);background:var(--gold-tint);}
+
+  .eco-wrap{margin-top:46px;display:flex;justify-content:center;}
+  .eco-wrap svg{width:100%;max-width:500px;height:auto;}
+  .eco-label{font-size:10.5px;fill:var(--ink-soft);font-family:var(--sans);text-anchor:middle;}
+  .eco-center{font-size:10.5px;fill:var(--white);font-family:var(--sans);font-weight:600;text-anchor:middle;}
+
+  .curve-wrap{margin-top:46px;} .curve-wrap svg{width:100%;height:auto;}
+  .curve-stage-label{font-size:11px;fill:var(--titanium-700);font-family:var(--sans);}
+  .curve-stage-title{font-size:12px;fill:var(--black);font-family:var(--sans);font-weight:600;}
+
+  .fact-grid{margin-top:40px;display:grid;grid-template-columns:repeat(2,1fr);gap:14px;text-align:left;}
+  .fact{border:1px solid var(--titanium-100);border-radius:12px;padding:21px 24px;background:var(--white);}
+  .fact .fact-icon{width:23px;height:23px;color:var(--gold);margin-bottom:12px;}
+  .fact p{font-size:15px;color:var(--ink-soft);margin:0;text-align:left;}
+
+  .pillars{margin-top:50px;}
+  .pillar-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .pillar{border:1px solid var(--titanium-100);border-radius:12px;padding:25px 18px;text-align:center;background:var(--white);}
+  .pillar .picon{width:27px;height:27px;color:var(--gold);margin:0 auto 14px;}
+  .pillar h3{font-size:15px;margin-bottom:0;}
+  .pillar-connect{display:flex;justify-content:center;padding:2px 0;}
+  .pillar-connect div{width:1px;height:27px;background:var(--titanium-300);}
+  .pillar-base{margin-top:0;background:var(--ink);color:var(--white);text-align:center;padding:18px;border-radius:12px;font-size:15.5px;font-weight:600;letter-spacing:.02em;}
+
+  .outcomes{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;width:100%;margin-top:34px;}
+  .outcome-chip{flex:1 1 165px;max-width:210px;border:1px solid var(--titanium-100);border-radius:10px;padding:16px 14px;text-align:center;font-size:14.5px;color:var(--ink-soft);background:var(--white);line-height:1.6;font-weight:500;}
+
+  /* ---- Decision Framework reveal ---- */
+  .program-frame{background:var(--black-2);color:var(--white);}
+  .program-title{border-top:1px solid var(--gold-soft);border-bottom:1px solid var(--gold-soft);padding:36px 0;margin:50px 0;text-align:center;}
+  .program-title .l1{font-family:var(--serif);font-size:clamp(26px,3.3vw,35px);color:var(--white);margin-bottom:7px;}
+  .program-title .l2{font-family:var(--serif);font-size:clamp(26px,3.3vw,35px);color:var(--white);margin-bottom:16px;}
+  .program-title .l3{font-size:15.5px;color:var(--gold-soft);letter-spacing:.08em;text-transform:uppercase;}
+
+  .stages{display:flex;flex-direction:column;gap:0;margin-top:50px;}
+  .stage{display:grid;grid-template-columns:58px 1fr;gap:20px;padding:28px 0;border-bottom:1px solid rgba(255,255,255,.08);text-align:left;}
+  .stage:last-child{border-bottom:none;}
+  .stage .snum{width:45px;height:45px;border-radius:50%;border:1px solid var(--gold-soft);color:var(--gold-soft);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:16px;}
+  .stage h3{color:var(--white);font-size:18.5px;margin-bottom:4px;}
+  .stage .sen{font-family:var(--serif-en);font-style:italic;color:var(--titanium-500);font-size:13.5px;margin-bottom:14px;}
+  .chiplist{display:flex;flex-wrap:wrap;gap:9px;}
+  .chiplist span{font-size:13.5px;color:var(--titanium-300);border:1px solid rgba(255,255,255,.15);padding:6px 13px;border-radius:20px;}
+
+  .year-track{margin-top:16px;display:grid;grid-template-columns:repeat(4,1fr);gap:0;}
+  .yr-step{padding-right:16px;position:relative;}
+  .yr-step::before{content:"";position:absolute;top:8px;left:0;right:16px;height:1px;background:rgba(255,255,255,.15);}
+  .yr-step:last-child::before{display:none;}
+  .yr-dot{width:17px;height:17px;border-radius:50%;background:var(--gold-soft);position:relative;z-index:1;margin-bottom:14px;}
+  .yr-tag{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-soft);font-weight:700;margin-bottom:6px;}
+  .yr-title{font-size:14.5px;color:var(--white);font-weight:600;}
+
+  .program-note{margin-top:56px;text-align:center;color:var(--titanium-500);font-size:15px;font-family:var(--serif);font-style:italic;line-height:1.9;}
+
+  footer{padding:100px 6vw 80px;text-align:center;background:var(--black);color:var(--titanium-500);}
+  footer .fmark{font-family:var(--serif);color:var(--gold-soft);font-size:17.5px;letter-spacing:.04em;margin-bottom:16px;}
+  footer .fline{font-size:13.5px;letter-spacing:.08em;}
+  footer .frule{width:28px;height:1px;background:rgba(255,255,255,.2);margin:26px auto;}
+
+  @media (max-width:860px){
+    section{padding:84px 7vw;}
+    .stats{grid-template-columns:repeat(2,1fr);gap:24px;}
+    .fact-grid{grid-template-columns:1fr;}
+    .layer.l2{margin-left:8px;} .layer.l3{margin-left:16px;}
+    .pillar-row{grid-template-columns:1fr;}
+    .pillar-connect{display:none;}
+    .stage{grid-template-columns:44px 1fr;}
+    .year-track{grid-template-columns:1fr;gap:24px;}
+    .yr-step::before{display:none;}
+    header.topbar{padding:16px 6vw;}
+    .toc-item{grid-template-columns:40px 1fr;gap:18px;}
+  }
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+<header class="topbar" id="topbar">
+  <span class="lhs">桃園國際機場 · Executive Insight Paper</span>
+  <span class="rhs" id="chlabel">封面</span>
+</header>
+
+<!-- Chapter bookmark nav — read position, not site navigation -->
+<nav class="chapter-nav" id="chapterNav">
+  <div class="cn-block" data-ch="1">
+    <div class="cn-chapter">Chapter I</div>
+    <div class="cn-title">Why</div>
+    <div class="cn-rule"></div>
+    <ul class="cn-list">
+      <li data-bm="The Real Competition"><span class="dot"></span>The Real Competition</li>
+      <li data-bm="A-CDM"><span class="dot"></span>A-CDM</li>
+      <li data-bm="APOC &amp; Digital Twin"><span class="dot"></span>APOC &amp; Digital Twin</li>
+      <li data-bm="The Frontline Question"><span class="dot"></span>The Frontline Question</li>
+    </ul>
+  </div>
+  <div class="cn-block" data-ch="2">
+    <div class="cn-chapter">Chapter II</div>
+    <div class="cn-title">Community</div>
+    <div class="cn-rule"></div>
+    <ul class="cn-list">
+      <li data-bm="A Misunderstood Name"><span class="dot"></span>A Misunderstood Name</li>
+      <li data-bm="Three Layers"><span class="dot"></span>Three Layers</li>
+      <li data-bm="Not the Destination"><span class="dot"></span>Not the Destination</li>
+    </ul>
+  </div>
+  <div class="cn-block" data-ch="3">
+    <div class="cn-chapter">Chapter III</div>
+    <div class="cn-title">Taoyuan Airport</div>
+    <div class="cn-rule"></div>
+    <ul class="cn-list">
+      <li data-bm="Shared Reality"><span class="dot"></span>Shared Reality</li>
+      <li data-bm="Current Foundation"><span class="dot"></span>Current Foundation</li>
+      <li data-bm="Capability"><span class="dot"></span>Capability</li>
+      <li data-bm="Future Outcome"><span class="dot"></span>Future Outcome</li>
+    </ul>
+  </div>
+  <div class="cn-block" data-ch="4">
+    <div class="cn-chapter">Chapter IV</div>
+    <div class="cn-title">The Beginning</div>
+    <div class="cn-rule"></div>
+    <ul class="cn-list">
+      <li data-bm="The Question"><span class="dot"></span>The Question</li>
+      <li data-bm="A Decision Framework"><span class="dot"></span>A Decision Framework</li>
+    </ul>
+  </div>
+</nav>
+
+<!-- COVER -->
+<section id="cover" data-chapter="封面" data-ch="0" data-bm="">
+  <div class="tag">Executive Insight Paper</div>
+  <h1>機場的下一個十年競爭力，<br>藏在看不見的地方</h1>
+  <p class="sub">一本關於協作能力的思考筆記</p>
+  <div class="meta"><span>桃園國際機場公司 決策層參閱</span><span>Airport Digital Collaboration Capability</span><span>2026</span></div>
+  <div class="scrolldown"><span>Scroll</span><svg viewBox="0 0 14 20" fill="none"><path d="M7 1V19M7 19L1 13M7 19L13 13" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+</section>
+
+<!-- TOC -->
+<section id="toc" data-chapter="目錄" data-ch="0" data-bm="">
+  <div class="toc-head reveal">目錄 · Contents</div>
+  <div class="toc-list">
+    <div class="toc-item reveal">
+      <div class="toc-num">I</div>
+      <div><div class="toc-en">Chapter One · Why</div><div class="toc-title">國際正在發生什麼？</div><div class="toc-desc">當旅客體驗都已到達國際水準，下一場競爭，藏在哪裡？</div></div>
+    </div>
+    <div class="toc-item reveal reveal-delay-1">
+      <div class="toc-num">II</div>
+      <div><div class="toc-en">Chapter Two · Community</div><div class="toc-title">原來，不是我們以為的那樣</div><div class="toc-desc">一個被誤解十年的名字，其實是機場生態系協作平台。</div></div>
+    </div>
+    <div class="toc-item reveal reveal-delay-2">
+      <div class="toc-num">III</div>
+      <div><div class="toc-en">Chapter Three · Taoyuan Airport</div><div class="toc-title">這對桃園機場，意味著什麼？</div><div class="toc-desc">桃園機場的基礎，其實比想像中更接近起跑點。</div></div>
+    </div>
+    <div class="toc-item reveal reveal-delay-3">
+      <div class="toc-num">IV</div>
+      <div><div class="toc-en">Chapter Four · The Beginning</div><div class="toc-title">偉大的轉型，通常如何開始？</div><div class="toc-desc">一個範圍明確、風險可控的起點，如何被設計出來。</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CHAPTER ONE ===================== -->
+<section class="chapter-opener" data-chapter="CHAPTER ONE · Why" data-ch="1" data-bm="">
+  <div class="ghost">I</div>
+  <div class="wrap reveal">
+    <div class="co-eyebrow">Chapter One</div>
+    <div class="co-en">Why</div>
+    <div class="co-zh">國際正在發生什麼？</div>
+    <div class="co-thesis">當旅客體驗都已經到達國際水準，<br>下一場競爭，會發生在哪裡？</div>
+    <div class="co-chip">I ／ IV</div>
+  </div>
+</section>
+
+<section class="compact" data-chapter="CHAPTER ONE · Why" data-ch="1" data-bm="The Real Competition">
+  <div class="wrap">
+    <p class="reveal short">麥肯錫在研究全球機場數位轉型時觀察到——機場是一個高度複雜的生態系統，任何一個變動，都需要多方在極短時間內同步對齊。</p>
+    <p class="keyline reveal reveal-delay-1 short">當機場已經投資了足夠多的智慧化系統，為什麼營運現場的資訊落差，依然存在？</p>
+  </div>
+</section>
+
+<section class="compact" data-chapter="CHAPTER ONE · Why" data-ch="1" data-bm="A-CDM">
+  <div class="wrap">
+    <div class="eyebrow reveal">國際案例 · A-CDM</div>
+    <h2 class="reveal reveal-delay-1">效率問題，其實是協作問題</h2>
+    <p class="reveal reveal-delay-2 short">歐洲民航體系將美國提出的協同決策概念，發展為今日全球通行的 A-CDM 框架——由 ACI EUROPE、EUROCONTROL、IATA 與 CANSO 共同治理。</p>
+    <div class="timeline reveal reveal-delay-2">
+      <div class="t-item"><div class="t-year">1998</div><div class="t-title">美國提出協同決策概念</div><div class="t-desc">共享時間軸，取代各自為政。</div></div>
+      <div class="t-item"><div class="t-year">2000s</div><div class="t-title">歐洲建立 A-CDM 框架</div><div class="t-desc">四大國際組織，共同治理。</div></div>
+      <div class="t-item"><div class="t-year">至今</div><div class="t-title">成為機場營運治理的共通語言</div><div class="t-desc">延誤管理成熟度的國際參照。</div></div>
+    </div>
+    <p class="keyline reveal reveal-delay-3 short">靠的不是新硬體，而是重新設計了——誰在什麼時間，應該知道什麼資訊。</p>
+  </div>
+</section>
+
+<section class="compact" data-chapter="CHAPTER ONE · Why" data-ch="1" data-bm="APOC &amp; Digital Twin">
+  <div class="wrap">
+    <div class="eyebrow reveal">國際案例 · APOC &amp; Digital Twin</div>
+    <h2 class="reveal reveal-delay-1">協作，也可以是一個隨時運作的神經中樞</h2>
+    <p class="reveal reveal-delay-2 short">史基浦機場 2019 年成立的 APOC，把制度層的協作「空間化」；樟宜機場則以數位分身，讓營運團隊即時規劃與模擬。</p>
+    <div class="stats reveal reveal-delay-2">
+      <div class="stat"><div class="num">2019</div><div class="label">史基浦 APOC 成立</div></div>
+      <div class="stat"><div class="num">4,000+</div><div class="label">2024 年減少擁擠分鐘數</div></div>
+      <div class="stat"><div class="num">T4</div><div class="label">樟宜數位分身應用場域</div></div>
+      <div class="stat"><div class="num">1</div><div class="label">共享的即時營運圖像</div></div>
+    </div>
+    <p class="keyline reveal reveal-delay-3 short">操作中心，不再只是一個房間，而是一種可以隨時被調閱的能力。</p>
+  </div>
+</section>
+
+<section class="tight" data-chapter="CHAPTER ONE · Why" data-ch="1" data-bm="The Frontline Question" style="background:var(--black);color:#fff;">
+  <div class="wrap reveal" style="text-align:center;">
+    <p style="color:var(--titanium-300);font-size:16.5px;margin-bottom:16px;">這些案例，都發生在指揮的高度。</p>
+    <h2 style="color:#fff;">那麼，第一線呢？</h2>
+  </div>
+</section>
+
+<!-- ===================== CHAPTER TWO ===================== -->
+<section class="chapter-opener" data-chapter="CHAPTER TWO · Community" data-ch="2" data-bm="">
+  <div class="ghost">II</div>
+  <div class="wrap reveal">
+    <div class="co-eyebrow">Chapter Two</div>
+    <div class="co-en">Community</div>
+    <div class="co-zh">原來，不是我們以為的那樣</div>
+    <div class="co-thesis">一個常被誤解的名字。</div>
+    <div class="co-chip">II ／ IV</div>
+  </div>
+</section>
+
+<!-- Reading guide — brings Taoyuan into view early, without becoming a proposal -->
+<section class="tight" data-chapter="CHAPTER TWO · Community" data-ch="2" data-bm="A Misunderstood Name">
+  <div class="wrap reveal" style="max-width:640px;">
+    <p style="font-family:var(--serif);font-style:italic;color:var(--titanium-700);font-size:17.5px;line-height:2;margin:0;">這份文件，並不是希望複製任何一座國際機場。<br>而是希望透過國際案例，重新思考——<br>桃園國際機場，下一階段可以建立什麼樣的數位能力。</p>
+  </div>
+</section>
+
+<section class="compact" data-chapter="CHAPTER TWO · Community" data-ch="2" data-bm="A Misunderstood Name">
+  <div class="wrap">
+    <div class="eyebrow reveal">國際案例 · Airport Community App</div>
+    <h2 class="reveal reveal-delay-1">超過 60 座機場，都在用的一款「誤會」</h2>
+    <p class="reveal reveal-delay-2 short">AirportLabs 的 Community App，如果只看名稱，很容易被理解成一款內部社群 App。</p>
+    <div class="stats reveal reveal-delay-2">
+      <div class="stat"><div class="num">60+</div><div class="label">全球採用機場數</div></div>
+      <div class="stat"><div class="num">2M+</div><div class="label">每月活躍使用者</div></div>
+      <div class="stat"><div class="num">20M+</div><div class="label">每月互動次數</div></div>
+      <div class="stat"><div class="num">150+</div><div class="label">涵蓋功能項目</div></div>
+    </div>
+    <p class="keyline reveal reveal-delay-3 short">Community，只是這套系統的入口，不是它的本質。</p>
+  </div>
+</section>
+
+<section class="compact" data-chapter="CHAPTER TWO · Community" data-ch="2" data-bm="Three Layers">
+  <div class="wrap">
+    <p class="reveal short" style="margin-bottom:8px;">如果把它真正被使用的方式拆開，會看到三個疊加的層次。</p>
+    <div class="layers reveal reveal-delay-1">
+      <div class="layer l1"><div class="lnum">01</div><div class="ltext"><h3>互動層 · Interaction</h3><p>即時訊息與通知——看得見的表層。</p></div></div>
+      <div class="layer l2"><div class="lnum">02</div><div class="ltext"><h3>工作流層 · Workflow</h3><p>故障通報、任務指派與跨角色同步。</p></div></div>
+      <div class="layer l3"><div class="lnum">03</div><div class="ltext"><h3>數據層 · Data</h3><p>每一次通報與確認，都在累積機場真實運作狀態。</p></div></div>
+    </div>
+    <div class="insight reveal reveal-delay-2">
+      <div class="tag">重新定義</div>
+      <p>它是一套讓「營運協作能力」延伸到每一位第一線工作人員手中的基礎設施——<strong>機場生態系協作平台（Airport Ecosystem Collaboration Platform）</strong>。</p>
+    </div>
+  </div>
+</section>
+
+<section class="climax" data-chapter="CHAPTER TWO · Community" data-ch="2" data-bm="Not the Destination">
+  <div class="wrap reveal">
+    <div class="en">Community is not the destination.<br>It's only the beginning.</div>
+    <div class="rule"></div>
+    <div class="zh">Community，從來不是目的。<br>它只是能力開始形成的第一步。</div>
+  </div>
+</section>
+
+<!-- ===================== CHAPTER THREE ===================== -->
+<section class="chapter-opener" data-chapter="CHAPTER THREE · Taoyuan Airport" data-ch="3" data-bm="">
+  <div class="ghost">III</div>
+  <div class="wrap reveal">
+    <div class="co-eyebrow">Chapter Three</div>
+    <div class="co-en">Taoyuan Airport</div>
+    <div class="co-zh">這對桃園機場，意味著什麼？</div>
+    <div class="co-thesis">基礎，或許比想像中更接近起跑點。</div>
+    <div class="co-chip">III ／ IV</div>
+  </div>
+</section>
+
+<section class="compact" data-chapter="CHAPTER THREE · Taoyuan Airport" data-ch="3" data-bm="Shared Reality">
+  <div class="wrap" style="max-width:720px;">
+    <p class="reveal short">A-CDM 解決了機構之間的協作，APOC 解決了管理階層的圖像，Community App 解決了第一線的協作。真正的落差，或許在於三者之間，是否共享同一套真實狀態。</p>
+    <div class="eco-wrap reveal reveal-delay-1">
+      <svg viewBox="0 0 480 340" xmlns="http://www.w3.org/2000/svg">
+        <g stroke="#c7c7c4" stroke-width="1">
+          <line x1="240" y1="170" x2="240" y2="50"/><line x1="240" y1="170" x2="380" y2="95"/><line x1="240" y1="170" x2="410" y2="195"/>
+          <line x1="240" y1="170" x2="340" y2="290"/><line x1="240" y1="170" x2="140" y2="290"/><line x1="240" y1="170" x2="70" y2="195"/><line x1="240" y1="170" x2="100" y2="95"/>
+        </g>
+        <circle cx="240" cy="170" r="40" fill="#0a0a0b"/><text x="240" y="166" class="eco-center">共享營運</text><text x="240" y="181" class="eco-center">真實狀態</text>
+        <circle cx="240" cy="50" r="26" fill="#ffffff" stroke="#b6935c" stroke-width="1.5"/><text x="240" y="55" class="eco-label">機場營運</text>
+        <circle cx="380" cy="95" r="26" fill="#ffffff" stroke="#c7c7c4" stroke-width="1.5"/><text x="380" y="100" class="eco-label">航空公司</text>
+        <circle cx="410" cy="195" r="26" fill="#ffffff" stroke="#c7c7c4" stroke-width="1.5"/><text x="410" y="200" class="eco-label">地勤團隊</text>
+        <circle cx="340" cy="290" r="26" fill="#ffffff" stroke="#c7c7c4" stroke-width="1.5"/><text x="340" y="295" class="eco-label">清消團隊</text>
+        <circle cx="140" cy="290" r="26" fill="#ffffff" stroke="#c7c7c4" stroke-width="1.5"/><text x="140" y="295" class="eco-label">保安單位</text>
+        <circle cx="70" cy="195" r="26" fill="#ffffff" stroke="#c7c7c4" stroke-width="1.5"/><text x="70" y="200" class="eco-label">航管單位</text>
+        <circle cx="100" cy="95" r="26" fill="#ffffff" stroke="#c7c7c4" stroke-width="1.5"/><text x="100" y="100" class="eco-label">零售 / 商業</text>
+      </svg>
+    </div>
+    <p class="keyline reveal reveal-delay-2 short">當第一線回報一個異常，這個訊息，需要多久，才能被所有相關角色同時看見？</p>
+  </div>
+</section>
+
+<section class="compact" data-chapter="CHAPTER THREE · Taoyuan Airport" data-ch="3" data-bm="Current Foundation">
+  <div class="wrap">
+    <div class="eyebrow reveal">對桃園國際機場而言</div>
+    <h2 class="reveal reveal-delay-1">其實，已經站在一個不錯的起跑點上</h2>
+    <p class="reveal reveal-delay-2 short">近年來，桃園國際機場已在多項智慧化基礎建設上持續投入，逐步累積良好的發展基礎。</p>
+    <div class="fact-grid reveal reveal-delay-3">
+      <div class="fact"><svg class="fact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 3a15 15 0 000 18M3 12h18"/></svg><p>全域 WiFi 6 與 5G 環境，持續建置推動</p></div>
+      <div class="fact"><svg class="fact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 12l2 2 4-4"/></svg><p>e-Gate 自動查驗通關系統，持續優化更新</p></div>
+      <div class="fact"><svg class="fact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="3"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg><p>One ID 臉部辨識系統，已進入試辦階段</p></div>
+      <div class="fact"><svg class="fact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 13l2-5h14l2 5M5 13v6M19 13v6M3 13h18"/></svg><p>機場自駕接駁驗證持續推進，具備亞洲領先的發展潛力</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="breath" data-chapter="CHAPTER THREE · Taoyuan Airport" data-ch="3" data-bm="Current Foundation">
+  <div class="wrap reveal">
+    <div class="en">Infrastructure is not yet capability.</div>
+    <div class="zh">但基礎設施，是否已經轉化為協作能力？</div>
+  </div>
+</section>
+
+<section class="compact" data-chapter="CHAPTER THREE · Taoyuan Airport" data-ch="3" data-bm="Capability">
+  <div class="wrap-wide" style="max-width:780px;">
+    <div class="eyebrow reveal">重新定義問題</div>
+    <h2 class="reveal reveal-delay-1">或許，這從來不是「要不要做一個 App」的問題</h2>
+    <p class="reveal reveal-delay-2 short">真正的提問方式，或許是——是否要開始，有意識地建立「機場數位協作能力」？</p>
+    <div class="curve-wrap reveal reveal-delay-3">
+      <svg viewBox="0 0 740 250" xmlns="http://www.w3.org/2000/svg">
+        <path d="M40,200 C 200,200 200,132 260,122 C 360,106 360,68 480,48 C 580,32 600,20 700,18" fill="none" stroke="#b6935c" stroke-width="2"/>
+        <g fill="#b6935c"><circle cx="40" cy="200" r="5"/><circle cx="260" cy="122" r="5"/><circle cx="480" cy="48" r="5"/><circle cx="700" cy="18" r="5"/></g>
+        <line x1="40" y1="222" x2="700" y2="222" stroke="#e7e7e5" stroke-width="1"/>
+        <text x="40" y="242" class="curve-stage-label">階段一</text><text x="260" y="242" class="curve-stage-label">階段二</text><text x="480" y="242" class="curve-stage-label">階段三</text><text x="668" y="242" class="curve-stage-label">階段四</text>
+        <text x="40" y="180" class="curve-stage-title">點狀智慧化方案</text>
+        <text x="200" y="104" class="curve-stage-title">跨角色連結營運</text>
+        <text x="420" y="30" class="curve-stage-title">數據驅動協同決策</text>
+        <text x="588" y="4" class="curve-stage-title">AI 賦能生態系</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- Breathing page — one sentence, generous whitespace -->
+<section class="breath" data-chapter="CHAPTER THREE · Taoyuan Airport" data-ch="3" data-bm="Future Outcome">
+  <div class="wrap reveal">
+    <div class="en">Capability doesn't appear overnight.<br>It grows layer by layer.</div>
+    <div class="zh">能力，不是一夜之間出現的。<br>它，一層一層生長。</div>
+  </div>
+</section>
+
+<section class="compact" data-chapter="CHAPTER THREE · Taoyuan Airport" data-ch="3" data-bm="Future Outcome">
+  <div class="wrap">
+    <p class="reveal short">當 Workflow、Knowledge、Data 逐漸成熟，AI，會是自然形成的下一層。</p>
+    <div class="insight reveal reveal-delay-1">
+      <div class="tag">重新定義 AI Governance</div>
+      <p>它不是 AI 管理，而是讓 AI 可以安全、可信、可持續發展的治理機制。</p>
+    </div>
+  </div>
+</section>
+
+<section class="compact" data-chapter="CHAPTER THREE · Taoyuan Airport" data-ch="3" data-bm="Future Outcome">
+  <div class="wrap-wide" style="max-width:720px;">
+    <div class="eyebrow reveal">拉高一層來看</div>
+    <h2 class="reveal reveal-delay-1">智慧機場、AI 賦能、數位基礎<br>——或許是同一件事</h2>
+    <div class="pillars reveal reveal-delay-2">
+      <div class="pillar-row">
+        <div class="pillar"><svg class="picon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg><h3>智慧機場政策</h3></div>
+        <div class="pillar"><svg class="picon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg><h3>交通部 AI 賦能</h3></div>
+        <div class="pillar"><svg class="picon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 10h16M10 4v16"/></svg><h3>Digital Foundation</h3></div>
+      </div>
+      <div class="pillar-row" style="grid-template-columns:1fr 1fr 1fr;margin-top:0;">
+        <div class="pillar-connect"><div></div></div><div class="pillar-connect"><div></div></div><div class="pillar-connect"><div></div></div>
+      </div>
+      <div class="pillar-base">Airport Digital Collaboration Capability</div>
+    </div>
+  </div>
+</section>
+
+<section class="compact" data-chapter="CHAPTER THREE · Taoyuan Airport" data-ch="3" data-bm="Future Outcome">
+  <div class="wrap-wide" style="max-width:700px;">
+    <p class="reveal short" style="margin-bottom:0;">這套能力一旦成熟，許多原本看似獨立的成果，會自然地被串連起來。</p>
+    <div class="outcomes reveal reveal-delay-1">
+      <div class="outcome-chip">國際機場服務評鑑（ASQ／ACI）</div>
+      <div class="outcome-chip">政府數位創新競賽成果（如總統盃）</div>
+      <div class="outcome-chip">智慧機場政策推動</div>
+      <div class="outcome-chip">交通部 AI 賦能</div>
+      <div class="outcome-chip">桃園國際機場品牌競爭力</div>
+    </div>
+    <p class="keyline reveal reveal-delay-2 short">這些，不是目的。而是能力成熟之後，自然發生的結果。</p>
+  </div>
+</section>
+
+<section class="tight" data-chapter="CHAPTER THREE · Taoyuan Airport" data-ch="3" data-bm="Future Outcome" style="background:var(--black);color:#fff;">
+  <div class="wrap reveal" style="text-align:center;">
+    <p style="color:var(--titanium-300);font-size:16.5px;margin-bottom:16px;">這份文件，或許不是要回答一個問題。</p>
+    <h2 style="color:#fff;">而是，想把一個問題，<br>重新提升到值得被認真思考的高度。</h2>
+  </div>
+</section>
+
+<!-- ===================== CHAPTER FOUR ===================== -->
+<section class="chapter-opener" data-chapter="CHAPTER FOUR · The Beginning" data-ch="4" data-bm="">
+  <div class="ghost">IV</div>
+  <div class="wrap reveal">
+    <div class="co-eyebrow">Chapter Four</div>
+    <div class="co-en">The Beginning</div>
+    <div class="co-zh">偉大的轉型，通常如何開始？</div>
+    <div class="co-thesis">未來十年的智慧機場，<br>應該具備什麼樣的數位能力？</div>
+    <div class="co-chip">IV ／ IV</div>
+  </div>
+</section>
+
+<section class="tight" data-chapter="CHAPTER FOUR · The Beginning" data-ch="4" data-bm="The Question">
+  <div class="wrap reveal">
+    <p class="short">這是一個桃園國際機場現在就可以開始思考的問題——不必急著回答，但值得放在決策層的議程之上。這不是結尾。</p>
+  </div>
+</section>
+
+<section class="program-frame" data-chapter="CHAPTER FOUR · The Beginning" data-ch="4" data-bm="A Decision Framework">
+  <div class="wrap-wide" style="max-width:800px;">
+    <div class="eyebrow reveal" style="color:var(--gold-soft);">How Leading Airports Begin</div>
+    <div class="program-title reveal reveal-delay-1">
+      <div class="l1">A Decision Framework</div>
+      <div class="l2">for Taoyuan Airport</div>
+      <div class="l3">One Possible Starting Point</div>
+    </div>
+    <p class="reveal reveal-delay-2 short" style="color:var(--titanium-300);">它是一套 <strong style="color:#fff;">Discovery Methodology</strong>——協助桃園機場，看清楚自己的問題，進而找到，最適合自己的答案。</p>
+
+    <div class="stages">
+      <div class="stage reveal">
+        <div class="snum">01</div>
+        <div><h3>策略探索 Strategic Discovery</h3><div class="sen">Stage 1</div>
+          <div class="chiplist"><span>Stakeholder Interview</span><span>User Journey</span><span>Workshop</span><span>International Benchmark</span><span>ADIP Assessment</span><span>Priority Discovery</span></div>
+        </div>
+      </div>
+      <div class="stage reveal reveal-delay-1">
+        <div class="snum">02</div>
+        <div><h3>策略藍圖 Strategy Blueprint</h3><div class="sen">Stage 2</div>
+          <div class="chiplist"><span>Community Vision</span><span>Priority Roadmap</span><span>AI Governance</span><span>Architecture</span><span>KPI</span></div>
+        </div>
+      </div>
+      <div class="stage reveal reveal-delay-2">
+        <div class="snum">03</div>
+        <div><h3>最小可行驗證 MVP Validation</h3><div class="sen">Stage 3</div>
+          <div class="chiplist"><span>PoC</span><span>Scenario</span><span>Measurement</span><span>Feedback</span></div>
+        </div>
+      </div>
+      <div class="stage reveal reveal-delay-3">
+        <div class="snum">04</div>
+        <div><h3>年度發展 Annual Development</h3><div class="sen">Stage 4</div>
+          <div class="year-track">
+            <div class="yr-step"><div class="yr-dot"></div><div class="yr-tag">Year 1</div><div class="yr-title">Platform Foundation</div></div>
+            <div class="yr-step"><div class="yr-dot"></div><div class="yr-tag">Year 2</div><div class="yr-title">Capability Expansion</div></div>
+            <div class="yr-step"><div class="yr-dot"></div><div class="yr-tag">Year 3</div><div class="yr-title">Airport Intelligence</div></div>
+            <div class="yr-step"><div class="yr-dot"></div><div class="yr-tag">Continuous</div><div class="yr-title">Operation · Maintenance · Optimization</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="program-note reveal reveal-delay-3">這不是我們的答案。<br>而是，屬於桃園國際機場自己的答案，開始被找到的地方。</div>
+  </div>
+</section>
+
+<footer data-chapter="尾聲" data-ch="0" data-bm="">
+  <div class="fmark">Airport Digital Collaboration Capability</div>
+  <div class="frule"></div>
+  <div class="fline">EXECUTIVE INSIGHT PAPER · 桃園國際機場公司 決策層參閱 · 2026</div>
+</footer>
+
+<script>
+  const progress = document.getElementById('progress');
+  function updateProgress(){
+    const h = document.documentElement;
+    const scrolled = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+    progress.style.width = scrolled + '%';
+  }
+  document.addEventListener('scroll', updateProgress, {passive:true});
+  updateProgress();
+
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); } });
+  },{threshold:0.15, rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // Chapter label + dark-header awareness + bookmark nav
+  const chSections = document.querySelectorAll('[data-chapter]');
+  const label = document.getElementById('chlabel');
+  const topbar = document.getElementById('topbar');
+  const navPanel = document.getElementById('chapterNav');
+  const cnBlocks = document.querySelectorAll('.cn-block');
+  const darkSet = new Set(['chapter-opener','climax','program-frame']);
+
+  const chIO = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        label.textContent = e.target.dataset.chapter;
+        const isDarkClass = [...e.target.classList].some(c=>darkSet.has(c));
+        const isDarkInline = (e.target.style.background||'').indexOf('--black') !== -1 || getComputedStyle(e.target).backgroundColor === 'rgb(10, 10, 11)';
+        const isDark = isDarkClass || isDarkInline;
+        topbar.classList.toggle('on-dark', isDark);
+        navPanel.classList.toggle('on-dark', isDark);
+
+        const ch = e.target.dataset.ch;
+        if(ch && ch !== '0'){
+          navPanel.classList.add('visible');
+          cnBlocks.forEach(b=> b.classList.toggle('active', b.dataset.ch === ch));
+        } else {
+          navPanel.classList.remove('visible');
+        }
+
+        const bm = e.target.dataset.bm;
+        if(bm){
+          const activeBlock = document.querySelector('.cn-block.active');
+          if(activeBlock){
+            activeBlock.querySelectorAll('li').forEach(li=>{
+              li.classList.toggle('active', li.dataset.bm === bm);
+            });
+          }
+        }
+      }
+    });
+  },{threshold:0.45});
+  chSections.forEach(s=>chIO.observe(s));
+</script>
+</body>
+</html>
