@@ -25,8 +25,8 @@
 
   #progress{position:fixed;top:0;left:0;height:2px;width:0%;background:linear-gradient(90deg,var(--gold-soft),var(--gold));z-index:999;transition:width .15s linear;}
   header.topbar{position:fixed;top:0;left:0;right:0;z-index:900;display:flex;justify-content:space-between;align-items:center;padding:22px 6vw;pointer-events:none;}
-  header.topbar .lhs{font-size:13px;letter-spacing:.16em;color:var(--titanium-500);text-transform:uppercase;font-weight:500;}
-  header.topbar .rhs{font-size:13px;letter-spacing:.16em;color:var(--titanium-700);text-transform:uppercase;font-weight:600;background:rgba(250,250,248,.75);backdrop-filter:blur(6px);padding:7px 13px;border-radius:4px;transition:color .3s ease;}
+  header.topbar .lhs{font-size:13px;letter-spacing:.16em;color:var(--titanium-500);text-transform:uppercase;font-weight:500;white-space:nowrap;}
+  header.topbar .rhs{font-size:13px;letter-spacing:.16em;color:var(--titanium-700);text-transform:uppercase;font-weight:600;background:rgba(250,250,248,.75);backdrop-filter:blur(6px);padding:7px 13px;border-radius:4px;transition:color .3s ease;white-space:nowrap;max-width:56vw;overflow:hidden;text-overflow:ellipsis;}
   header.topbar.on-dark .lhs{color:var(--titanium-500);}
   header.topbar.on-dark .rhs{color:var(--gold-soft);background:rgba(255,255,255,.08);}
 
@@ -153,10 +153,15 @@
   .curve-stage-label{font-size:11px;fill:var(--titanium-700);font-family:var(--sans);}
   .curve-stage-title{font-size:12px;fill:var(--black);font-family:var(--sans);font-weight:600;}
 
-  .fact-grid{margin-top:40px;display:grid;grid-template-columns:repeat(2,1fr);gap:14px;text-align:left;}
+  .fact-grid{margin-top:16px;display:grid;grid-template-columns:repeat(2,1fr);gap:14px;text-align:left;}
   .fact{border:1px solid var(--titanium-100);border-radius:12px;padding:21px 24px;background:var(--white);}
   .fact .fact-icon{width:23px;height:23px;color:var(--gold);margin-bottom:12px;}
   .fact p{font-size:15px;color:var(--ink-soft);margin:0;text-align:left;}
+
+  .flagship{margin-top:40px;margin-bottom:24px;text-align:left;border:1.5px solid var(--gold);border-radius:14px;padding:28px 30px;background:linear-gradient(135deg,var(--gold-tint),transparent 75%);}
+  .flagship-tag{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:10px;}
+  .flagship h3{font-size:18px;margin-bottom:10px;}
+  .flagship p{font-size:15.5px;color:var(--ink-soft);margin:0;text-align:left;}
 
   .pillars{margin-top:50px;}
   .pillar-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
@@ -211,8 +216,104 @@
     .stage{grid-template-columns:44px 1fr;}
     .year-track{grid-template-columns:1fr;gap:24px;}
     .yr-step::before{display:none;}
-    header.topbar{padding:16px 6vw;}
+    header.topbar{padding:14px 5vw;justify-content:flex-end;}
+    header.topbar .lhs{display:none;}
+    header.topbar .rhs{font-size:10.5px;letter-spacing:.1em;padding:6px 10px;max-width:82vw;}
     .toc-item{grid-template-columns:40px 1fr;gap:18px;}
+  }
+
+  /* ---- Phone reading pass — close-range solo reading, desktop/projector scale untouched ---- */
+  @media (max-width:640px){
+    section{padding:76px 7vw;}
+    section.compact{padding:64px 7vw;}
+    section.tight{padding:56px 7vw;}
+    .eyebrow{font-size:11.5px;margin-bottom:16px;}
+    .eyebrow::before,.eyebrow::after{width:18px;}
+    h1{font-size:clamp(26px,7.2vw,36px);}
+    h2{font-size:clamp(21px,6vw,27px);margin-bottom:16px;}
+    h3{font-size:16.5px;}
+    p{font-size:16px;margin-bottom:14px;}
+    .short{max-width:100%;}
+    .keyline{font-size:17.5px;margin-top:20px;}
+    .breath .en{font-size:clamp(18px,5.6vw,23px);}
+    .breath .zh{font-size:clamp(14px,3.8vw,15.5px);margin-top:16px;}
+
+    #cover .tag{font-size:11.5px;margin-bottom:26px;}
+    #cover h1{font-size:clamp(27px,8vw,38px);margin-bottom:18px;}
+    #cover .sub{font-size:clamp(14px,4vw,16px);margin-bottom:38px;}
+    #cover .meta{font-size:11px;gap:10px;}
+    #cover .meta span:not(:last-child)::after{margin-left:10px;}
+
+    #toc{padding:96px 7vw;}
+    #toc .toc-head{font-size:11.5px;margin-bottom:48px;}
+    .toc-item{padding:22px 0;gap:14px;}
+    .toc-num{font-size:22px;}
+    .toc-en{font-size:12px;}
+    .toc-title{font-size:17px;margin-bottom:6px;}
+    .toc-desc{font-size:13.5px;}
+
+    .chapter-opener .co-eyebrow{font-size:11.5px;margin-bottom:20px;}
+    .chapter-opener .co-en{font-size:clamp(30px,13vw,42px);margin-bottom:16px;}
+    .chapter-opener .co-zh{font-size:clamp(17px,5.4vw,20px);margin-bottom:26px;}
+    .chapter-opener .co-thesis{font-size:clamp(14px,4.2vw,16px);max-width:88vw;}
+    .chapter-opener .co-chip{margin-top:32px;font-size:11px;padding:6px 15px;}
+
+    .climax .en{font-size:clamp(19px,7vw,26px);}
+    .climax .zh{font-size:clamp(14.5px,4.4vw,17px);margin-top:24px;}
+
+    .stats{gap:16px;margin-top:30px;}
+    .stat .num{font-size:clamp(20px,6.6vw,25px);}
+    .stat .label{font-size:11px;}
+
+    .insight{padding:20px 22px;margin-top:26px;}
+    .insight .tag{font-size:10.5px;}
+    .insight p{font-size:15px;}
+
+    .flagship{padding:22px 22px;margin-top:26px;margin-bottom:18px;}
+    .flagship h3{font-size:16px;}
+    .flagship p{font-size:14.5px;}
+
+    .timeline{margin-top:30px;}
+    .t-item{padding-left:34px;margin-bottom:22px;}
+    .t-year{font-size:12.5px;}
+    .t-title{font-size:14.5px;}
+    .t-desc{font-size:13px;}
+
+    .layers{margin-top:26px;gap:9px;}
+    .layer{padding:16px 18px;gap:13px;}
+    .layer .lnum{width:24px;height:24px;font-size:11px;}
+    .layer .ltext h3{font-size:14px;}
+    .layer .ltext p{font-size:12.5px;}
+
+    .eco-wrap{margin-top:30px;}
+    .fact-grid{margin-top:12px;gap:10px;}
+    .fact{padding:16px 18px;}
+    .fact p{font-size:13.5px;}
+    .fact .fact-icon{width:19px;height:19px;margin-bottom:8px;}
+
+    .pillars{margin-top:32px;}
+    .pillar{padding:18px 12px;}
+    .pillar h3{font-size:12.5px;}
+    .pillar-base{padding:14px;font-size:13px;}
+    .outcomes{margin-top:24px;gap:9px;}
+    .outcome-chip{font-size:13px;padding:13px 11px;flex-basis:130px;}
+
+    .program-title{padding:24px 0;margin:32px 0;}
+    .program-title .l1,.program-title .l2{font-size:clamp(21px,7vw,26px);}
+    .program-title .l3{font-size:12.5px;}
+    .stages{margin-top:32px;}
+    .stage{padding:20px 0;gap:14px;}
+    .stage .snum{width:36px;height:36px;font-size:13px;}
+    .stage h3{font-size:15.5px;}
+    .stage .sen{font-size:11.5px;margin-bottom:10px;}
+    .chiplist span{font-size:12px;padding:5px 11px;}
+    .yr-title{font-size:12.5px;}
+    .yr-tag{font-size:10.5px;}
+    .program-note{font-size:13px;margin-top:38px;}
+
+    footer{padding:64px 7vw 54px;}
+    footer .fmark{font-size:15px;}
+    footer .fline{font-size:11.5px;}
   }
 </style>
 </head>
@@ -452,8 +553,15 @@
   <div class="wrap">
     <div class="eyebrow reveal">對桃園國際機場而言</div>
     <h2 class="reveal reveal-delay-1">其實，已經站在一個不錯的起跑點上</h2>
-    <p class="reveal reveal-delay-2 short">近年來，桃園國際機場已在多項智慧化基礎建設上持續投入，逐步累積良好的發展基礎。</p>
-    <div class="fact-grid reveal reveal-delay-3">
+    <p class="reveal reveal-delay-2 short">近年來，桃園國際機場已在多項智慧化基礎建設上持續投入，逐步累積良好的發展基礎——其中，ADIP 的推動，更是關鍵的一步。</p>
+
+    <div class="flagship reveal reveal-delay-3">
+      <div class="flagship-tag">旗艦計畫 · Flagship Initiative</div>
+      <h3>ADIP · Airport Data Integration Platform</h3>
+      <p>桃園國際機場推動的機場資料整合平台，已逐步將分散於機場內部的多元系統資料，整合為單一共通基礎——這正是本書所談的「共享營運真實狀態」，在桃園機場已經開始發生的證明。</p>
+    </div>
+
+    <div class="fact-grid reveal reveal-delay-4">
       <div class="fact"><svg class="fact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 3a15 15 0 000 18M3 12h18"/></svg><p>全域 WiFi 6 與 5G 環境，持續建置推動</p></div>
       <div class="fact"><svg class="fact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 12l2 2 4-4"/></svg><p>e-Gate 自動查驗通關系統，持續優化更新</p></div>
       <div class="fact"><svg class="fact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="3"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg><p>One ID 臉部辨識系統，已進入試辦階段</p></div>
